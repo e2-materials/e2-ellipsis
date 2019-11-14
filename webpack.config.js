@@ -2,7 +2,7 @@
  * @Author: ningbo.kang
  * @Date: 2019-11-14 10:12:38
  * @LastEditors: ningbo.kang
- * @LastEditTime: 2019-11-14 11:32:31
+ * @LastEditTime: 2019-11-14 13:03:31
  * @Description:
  */
 const path = require("path");
@@ -23,6 +23,13 @@ module.exports = {
         test: /\.(js|vue)$/,
         loader: "eslint-loader",
         enforce: "pre",
+        options: {
+          extensions: [
+            ".js",
+            ".jsx",
+            ".vue"
+          ]
+        },
         include: [path.resolve(__dirname, "./src")]
       },
       {
@@ -31,6 +38,9 @@ module.exports = {
         options: {
           loaders: {
             less: "vue-style-loader!css-loader!less-loader"
+          },
+          compilerOptions: {
+            preserveWhitespace: false
           }
         }
       },

@@ -1,32 +1,34 @@
-/** * ### Ellipsis-Text组件 *
+<!--
+ * @Author: ningbo.kang
+ * @Date: 2019-11-14 11:31:19
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2019-11-14 16:00:53
+ * @Description: 
+ * ### Ellipsis-Text组件 *
 使用场景：1.适用于单行文字超出显示省略号；2.适用于多行文本超出指定行显示省略号（或追加【更多】按钮）
 * props：
 [content-内容，line-默认标签数据，triggerMore-是否触发展开操作，hasMore-是否显示更多按钮，isHtml-是否html内容，revealWidth-更多按钮宽度，revealText-更多按钮文字，foldText-收起按钮文字]
-* 事件：reveal（展开）、fold（收起） */
+* 事件：reveal（展开）、fold（收起）
+-->
 <template>
-  <div :class="['vx-ellipsis-text']" :style="{ 'max-height': maxHeight }">
-    <div
-      class="ellipsis-content"
+  <div :class="['vx-ellipsis-text']"
+    :style="{ 'max-height': maxHeight }">
+    <div class="ellipsis-content"
       :style="{ '-webkit-line-clamp': line }"
       ref="txtContent"
       v-html="content"
-      v-if="isHtml"
-    ></div>
-    <div
-      class="ellipsis-content"
+      v-if="isHtml"></div>
+    <div class="ellipsis-content"
       :style="{ '-webkit-line-clamp': line }"
       ref="txtContent"
-      v-else
-    >
-      {{ content | trimEnter }}
-    </div>
+      v-else>{{ content | trimEnter }}</div>
   </div>
 </template>
 
 <script>
 export default {
   filters: {
-    trimEnter (data) {
+    trimEnter(data) {
       return data ? data.replace(/[\r\n]/g, "") : "";
     }
   },
@@ -47,18 +49,18 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       fontSize: 14, // 默认字号14px
       lineHeight: 22 // 默认行高22
     };
   },
   computed: {
-    maxHeight () {
+    maxHeight() {
       return `${this.lineHeight * this.line}px`;
     }
   },
-  mounted () {
+  mounted() {
     // this.$nextTick(() => {
     //   let txtEle = this.$refs.txtContent;
     //   if (txtEle.currentStyle) {

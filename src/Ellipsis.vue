@@ -1,8 +1,8 @@
 <!--
  * @Author: ningbo.kang
  * @Date: 2019-09-26 10:16:53
- * @LastEditors: ningbo.kang
- * @LastEditTime: 2019-11-14 10:26:12
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2019-11-14 16:10:17
  * @Description:
  -->
 <script>
@@ -26,25 +26,25 @@ export default {
     }
   },
   methods: {
-    getStrDom (fullStr, line) {
+    getStrDom(fullStr, line) {
       return (
-        <span title={fullStr}>
+        <div title={fullStr}>
           <EllipsisText line={line} content={fullStr} />
-        </span>
+        </div>
       );
     },
-    getTooltip (fullStr, line) {
+    getTooltip(fullStr, line) {
       return (
         <Tooltip>
           <template slot="title">{fullStr}</template>
-          <span>
+          <div>
             <EllipsisText line={line} content={fullStr} />
-          </span>
+          </div>
         </Tooltip>
       );
     }
   },
-  render () {
+  render() {
     const { tooltip, line } = this.$props;
     const str = this.$slots.default.map(vNode => vNode.text).join("");
     const strDom = tooltip

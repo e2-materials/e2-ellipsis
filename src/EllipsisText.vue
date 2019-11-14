@@ -1,60 +1,64 @@
-/**
-  * ### Ellipsis-Text组件
-  * 使用场景：1.适用于单行文字超出显示省略号；2.适用于多行文本超出指定行显示省略号（或追加【更多】按钮）
-  * props： [content-内容，line-默认标签数据，triggerMore-是否触发展开操作，hasMore-是否显示更多按钮，isHtml-是否html内容，revealWidth-更多按钮宽度，revealText-更多按钮文字，foldText-收起按钮文字]
-  * 事件：reveal（展开）、fold（收起）
-*/
+/** * ### Ellipsis-Text组件 *
+使用场景：1.适用于单行文字超出显示省略号；2.适用于多行文本超出指定行显示省略号（或追加【更多】按钮）
+* props：
+[content-内容，line-默认标签数据，triggerMore-是否触发展开操作，hasMore-是否显示更多按钮，isHtml-是否html内容，revealWidth-更多按钮宽度，revealText-更多按钮文字，foldText-收起按钮文字]
+* 事件：reveal（展开）、fold（收起） */
 <template>
-  <div :class="['vx-ellipsis-text']"
-    :style="{'max-height': maxHeight}">
-    <div class="ellipsis-content"
-      :style="{'-webkit-line-clamp': line}"
+  <div :class="['vx-ellipsis-text']" :style="{ 'max-height': maxHeight }">
+    <div
+      class="ellipsis-content"
+      :style="{ '-webkit-line-clamp': line }"
       ref="txtContent"
       v-html="content"
-      v-if="isHtml"></div>
-    <div class="ellipsis-content"
-      :style="{'-webkit-line-clamp': line}"
+      v-if="isHtml"
+    ></div>
+    <div
+      class="ellipsis-content"
+      :style="{ '-webkit-line-clamp': line }"
       ref="txtContent"
-      v-else>{{content | trimEnter}}</div>
+      v-else
+    >
+      {{ content | trimEnter }}
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   filters: {
-    trimEnter(data) {
-      return data ? data.replace(/[\r\n]/g, '') : '';
-    },
+    trimEnter (data) {
+      return data ? data.replace(/[\r\n]/g, "") : "";
+    }
   },
   props: {
     /* 文字内容 */
     content: {
-      type: String,
+      type: String
       // default: '这是一段示例文字，用来测试的。这是一段示例文字，用来测试的。这是一段示例文字，用来测试的。这是一段示例文字，用来测试的。这是一段示例文字，用来测试的。这是一段示例文字，用来测试的。这是一段示例文字，用来测试的。'
     },
     /* 展示几行文字 */
     line: {
       type: [Number, String],
-      default: 1,
+      default: 1
     },
     /* 是否是html内容 */
     isHtml: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
-  data() {
+  data () {
     return {
       fontSize: 14, // 默认字号14px
-      lineHeight: 22, // 默认行高22
+      lineHeight: 22 // 默认行高22
     };
   },
   computed: {
-    maxHeight() {
+    maxHeight () {
       return `${this.lineHeight * this.line}px`;
-    },
+    }
   },
-  mounted() {
+  mounted () {
     // this.$nextTick(() => {
     //   let txtEle = this.$refs.txtContent;
     //   if (txtEle.currentStyle) {
@@ -65,7 +69,7 @@ export default {
     //     this.lineHeight = Number(getComputedStyle(txtEle).lineHeight.replace('px', ''));
     //   }
     // });
-  },
+  }
 };
 </script>
 
@@ -129,14 +133,14 @@ export default {
     // background: rgba(255, 0, 0, 0.16);
   }
   .ellipsis-ghost:before {
-    content: '';
+    content: "";
     display: block;
     float: right;
     width: 50%;
     height: 100%;
   }
   .ellipsis-placeholder {
-    content: '';
+    content: "";
     display: block;
     float: right;
     width: 50%;

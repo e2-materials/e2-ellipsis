@@ -1,4 +1,8 @@
 {
   "extends": "standard",
-  "plugins": [ "html" ]
+  "rules": {
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"]
+  },
+  "plugins": ["html"]
 }
